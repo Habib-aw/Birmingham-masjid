@@ -1,4 +1,5 @@
-18-Mar-23,Fajr 5:00,Zuhr 1:00,Asr 4:45,Maghrib 6:20,Isha 8:00
+17-Mar-23,Fajr 5:00,Zuhr 1:00,Asr 4:45,Maghrib 6:20,Isha 8:00
+18-Mar-23,Fajr 5:21,Zuhr 1:22,Asr 4:45,Maghrib 6:21,Isha 8:00
 19-Mar-23,Fajr 4:45,Zuhr 1:00,Asr 4:45,Maghrib 6:22,Isha 8:00
 20-Mar-23,Fajr 4:45,Zuhr 1:00,Asr 4:45,Maghrib 6:24,Isha 8:00
 21-Mar-23,Fajr 4:45,Zuhr 1:00,Asr 4:45,Maghrib 6:25,Isha 8:00
