@@ -49,10 +49,10 @@ y1=-0.07
 x1=0.052
 x2=0.004
 
-BMA_logoWidth = 400
-BMA_logoLength = 140
-BMA_logoPositioningRelx = 0.5
-BMA_logoPositioningRely = 0.64+l
+logoWidth = 400
+logoLength = 140
+logoPositioningRelx = 0.5
+logoPositioningRely = 0.64+l
 
 # -------------------------------Ramadan class-------------------------------
 DailyMessageImgWidth = 1700

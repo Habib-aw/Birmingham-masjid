@@ -12,7 +12,7 @@ from Footer import *
 from Slideshow import *
 from salahTimer import Timer
 # Other
-from Settings import background,foreground,salahTitles,fontStyle,JummahTimes,BMA_logoLength,BMA_logoWidth,BMA_logoPositioningRelx,BMA_logoPositioningRely,x2,x1,x,y1,y,jummahXpos,jummahYpos,jummahTitleXpos,jummahTitleYpos,salahContainerFont
+from Settings import background,foreground,salahTitles,fontStyle,JummahTimes,logoPositioningRelx,logoPositioningRely,x2,x1,x,y1,y,jummahXpos,jummahYpos,jummahTitleXpos,jummahTitleYpos,salahContainerFont
 
 
 root = Tk()
@@ -33,7 +33,7 @@ isha = SalahContainer(salahContinerframe,"Isha",salahInfo.get(4),sTimes[4],xpos=
 salahLabels = [fajr,zuhr,asr,maghrib,isha]
 Label(salahContinerframe,text="Jummah",font=(fontStyle,salahTitles),bg=background,fg=foreground).place(relx=jummahTitleXpos,rely=jummahTitleYpos,anchor='center')
 Label(salahContinerframe,text=JummahTimes,font=(fontStyle,salahContainerFont),bg=background,fg=foreground).place(relx=jummahXpos,rely=jummahYpos,anchor='center')
-Label(salahContinerframe).place(relx=BMA_logoPositioningRelx,rely=BMA_logoPositioningRely,anchor='center')
+Label(salahContinerframe).place(relx=logoPositioningRelx,rely=logoPositioningRely,anchor='center')
 
 s1 = Slide(root,
 content="",
