@@ -55,8 +55,8 @@ class SalahInfo:
 		return [announcements,changes]
 	def tmrroStartTimes(self):
 		changes= []
-		if len(self.startTimesLines)>=2:
-			changes = self.startTimesLines[1].split(",")
+		if (len(self.lines)-1-self.salahI)>=2:
+			changes = self.startTimesLines[self.startI+1].split(",")
 			changes = changes[1:]
 			for i in range(len(changes)):
 				if "|" in changes[i]:

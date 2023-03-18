@@ -143,15 +143,16 @@ class Timer:
         else:
             self.phoneSwitch.pack_forget()
             if not self.timesChanged:
+                if(toStrp(currentTime) > toStrp(self.ramadan.RamadanTimes[0][1]+":00 AM")):
+                    self.ramadan.setSuhoor()
+                if(toStrp(currentTime) > toStrp(self.ramadan.RamadanTimes[0][2]+":00 PM")):
+                    self.ramadan.setIftaar()
+                
                 for i in range(len(self.changes)):
                     if toStrp(currentTime) > self.changes[i][0]:
                         self.salahLabels[self.changes[i][2]].label.config(text=self.changes[i][1])
-                        if self.changes[i][2] == 0: 
-                            self.ramadan.setSuhoor()
-                            continue # used to stop announcement from occurring
-                        if self.changes[i][2] == 3:
-                            self.ramadan.setIftaar()
-                            continue # used to stop announcement from occurring
+                        if self.changes[i][2] ==0 | self.changes[i][2]==3:
+                            continue
                         self.setAnnouncements(self.changes[i][2])
                 self.timesChanged= True
                 for i in range(5):
