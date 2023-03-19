@@ -24,7 +24,8 @@ class SalahInfo:
 	def getSalahs(self):
 		salahNames = ["Fajr","Zuhr","Asr","Maghrib","Isha"]
 		if len(self.lines) != 0:
-			self.salahTimes = re.findall("\d+:[0-9][0-9]", self.lines[self.salahI])
+			self.salahTimes = self.returnSalahTimes()
+#    re.findall("\d+:[0-9][0-9]", self.lines[self.salahI])
 			self.salahTimesObj = objTime(self.salahTimes,subtractMin=minsBeforeSalah)
 			for i in range(len(self.salahTimes)):
 				self.salahTimes[i] = [salahNames[i],self.salahTimes[i]]
@@ -35,6 +36,13 @@ class SalahInfo:
 			for i in range(len(self.startTimes)):
 				if "|" in self.startTimes[i]:
 					self.startTimes[i]=self.startTimes[i].split("|")
+	def returnSalahTimes(self,index=0):
+		x = self.lines[self.salahI+index].split(",")
+		x = x[1:]
+		for i in range(len(x)):
+			x[i]=x[i].split(" ")[1]
+		x[len(x)-1]=x[len(x)-1].replace("\n","")
+		return x
 	def getO(self,i):
 		return self.salahTimesObj[i][1].strftime("%I:%M:%S %p")
 	def get(self,i):
@@ -43,7 +51,8 @@ class SalahInfo:
 		announcements = []
 		changes = []
 		if (len(self.lines)-1-self.salahI)>=2:
-			tmrroSalahs = re.findall("\d+:[0-9][0-9]", self.lines[self.salahI+1])
+			tmrroSalahs = self.returnSalahTimes(1)
+   #re.findall("\d+:[0-9][0-9]", self.lines[self.salahI+1])
 			for i in range(5):
 				if self.salahTimes[i][1] !=tmrroSalahs[i]:
 					changes.append([self.salahTimesObj[i][1],tmrroSalahs[i],i])
@@ -75,5 +84,7 @@ def objTime(arr,addMin=0,subtractMin=0):
 	for i in range(1,len(arr)):
 		newArr[i]+= " PM"
 	for i in range(len(newArr)):
+		if "-" in newArr[i]:
+			continue
 		newArr[i] = datetime.strptime(newArr[i],"%I:%M %p")+timedelta(minutes=addMin)-timedelta(minutes=subtractMin)
 	return newArr

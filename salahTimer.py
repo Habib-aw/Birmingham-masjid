@@ -58,7 +58,7 @@ class Timer:
         currentTime = toStrp(datetime.now().strftime("%I:%M:%S %p"))
         nextSalah = ""
         for j in range(len(arr)):
-            if currentTime<arr[j][1]:
+            if (not isinstance(arr[j][1],str)) and currentTime<arr[j][1]:
                 if datetime.now().strftime("%A") == "Friday" and arr[j][0] == "Zuhr":
                     continue
                 nextSalah=arr[j]
@@ -149,14 +149,14 @@ class Timer:
                     self.ramadan.setIftaar()
                 
                 for i in range(len(self.changes)):
-                    if toStrp(currentTime) > self.changes[i][0]:
+                    if (not isinstance(self.changes[i][0],str))  and toStrp(currentTime) > self.changes[i][0]:
                         self.salahLabels[self.changes[i][2]].label.config(text=self.changes[i][1])
                         if self.changes[i][2] ==0 | self.changes[i][2]==3:
                             continue
                         self.setAnnouncements(self.changes[i][2])
                 self.timesChanged= True
                 for i in range(5):
-                        if toStrp(currentTime) > self.salahObj[i][1]:
+                        if (not isinstance(self.salahObj[i][1],str)) and toStrp(currentTime) > self.salahObj[i][1]:
                             if self.salahLabels[i].endTime != None:
                                 self.salahLabels[i].startTime.config(text=self.timesChanges[i][0])
                                 self.salahLabels[i].endTime.config(text=self.timesChanges[i][1])
