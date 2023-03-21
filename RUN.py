@@ -33,7 +33,6 @@ isha = SalahContainer(salahContinerframe,"Isha",salahInfo.get(4),sTimes[4],xpos=
 salahLabels = [fajr,zuhr,asr,maghrib,isha]
 Label(salahContinerframe,text="Jummah",font=(fontStyle,salahTitles),bg=background,fg=foreground).place(relx=jummahTitleXpos,rely=jummahTitleYpos,anchor='center')
 Label(salahContinerframe,text=JummahTimes,font=(fontStyle,salahContainerFont),bg=background,fg=foreground).place(relx=jummahXpos,rely=jummahYpos,anchor='center')
-Label(salahContinerframe).place(relx=logoPositioningRelx,rely=logoPositioningRely,anchor='center')
 
 s1 = Slide(root,
 content="",
