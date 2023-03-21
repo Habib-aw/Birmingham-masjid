@@ -46,10 +46,10 @@ def last_day(d, day_name):
     return d + timedelta(days=delta_day)
 marchLastSunday = last_day(datetime(datetime.now().year,4,1),'sunday')
 octoberLastSunday = last_day(datetime(datetime.now().year,11,1),'sunday')
-JummahTimes = "1:00 | 1:20"
+JummahTimes = "1:00"
 
 if datetime.now() >= marchLastSunday and datetime.now()<octoberLastSunday: # summer time jummah times go here
-    JummahTimes = "1:30 | 1:50"
+    JummahTimes = "2:00"
 
 jummahXpos=0.5
 jummahYpos=0.9+l
