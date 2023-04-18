@@ -1,7 +1,7 @@
 from datetime import timedelta,datetime,date
 from tkinter import Label
 import schedule
-from Settings import background,foreground,fontStyle,salahIn2Font,salahIn2PaddingTop,salahIn2SpaceBetween,announcementContentFont,salahIn2Bg,phonSwitchFont,minsBeforeSalah
+from Settings import background,foreground,fontStyle,salahIn2Font,salahIn2PaddingTop,salahIn2SpaceBetween,announcementContentFont,salahIn2Bg,phonSwitchFont,minsBeforeSalah,isRamadan
 from Slide import Slide
 from audioplayer import AudioPlayer
 from threading import Thread
@@ -143,15 +143,16 @@ class Timer:
         else:
             self.phoneSwitch.pack_forget()
             if not self.timesChanged:
-                if(toStrp(currentTime) > toStrp(self.ramadan.RamadanTimes[0][1]+":00 AM")):
-                    self.ramadan.setSuhoor()
-                if(toStrp(currentTime) > toStrp(self.ramadan.RamadanTimes[0][2]+":00 PM")):
-                    self.ramadan.setIftaar()
+                if isRamadan:
+                    if(toStrp(currentTime) > toStrp(self.ramadan.RamadanTimes[0][1]+":00 AM")):
+                        self.ramadan.setSuhoor()
+                    if(toStrp(currentTime) > toStrp(self.ramadan.RamadanTimes[0][2]+":00 PM")):
+                        self.ramadan.setIftaar()
                 
                 for i in range(len(self.changes)):
                     if (not isinstance(self.changes[i][0],str))  and toStrp(currentTime) > self.changes[i][0]:
                         self.salahLabels[self.changes[i][2]].label.config(text=self.changes[i][1])
-                        if self.changes[i][2] ==0 | self.changes[i][2]==3:
+                        if (isRamadan and self.changes[i][2] ==0) | self.changes[i][2]==3:
                             continue
                         self.setAnnouncements(self.changes[i][2])
                 self.timesChanged= True

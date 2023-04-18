@@ -11,8 +11,9 @@ from SalahInfo import *
 from Footer import *
 from Slideshow import *
 from salahTimer import Timer
+from hijri_converter import Gregorian
 # Other
-from Settings import background,foreground,salahTitles,fontStyle,JummahTimes,logoPositioningRelx,logoPositioningRely,x2,x1,x,y1,y,jummahXpos,jummahYpos,jummahTitleXpos,jummahTitleYpos,salahContainerFont
+from Settings import background,foreground,salahTitles,fontStyle,JummahTimes,logoPositioningRelx,logoPositioningRely,x2,x1,x,y1,y,jummahXpos,jummahYpos,jummahTitleXpos,jummahTitleYpos,salahContainerFont,isRamadan
 
 
 root = Tk()
@@ -40,15 +41,26 @@ frame=salahContinerframe,
 time=10
 )
 
+hijri = Gregorian(int(datetime.now().year), datetime.now().month, datetime.now().day).to_hijri()
 
+if hijri.month_name() =="Ramadhan":
+    ramadanDay = hijri.day
+    if ramadanDay >25:
+        eidJamaahSlide = Slide(root,title="EID JAMA'AH",content="1st Jama'ah: 8:30 AM\n\n2nd Jama'ah: 9:30 AM\n\n3rd Jama'ah: 10:30 AM",contentFont=100,bg='black')
 
-
-r = Ramadan(slideshow,root)
+if isRamadan:
+    r = Ramadan(slideshow,root)
 
 s1.packSlide()
 slideshow.addAll([s1])
-
-t = Timer(root,salahInfo.salahTimesObj,[f,slideshow],changes,announcements,timeChanges,salahLabels,r)
+try:
+    slideshow.add(eidJamaahSlide)
+except:
+    pass
+try:
+    t = Timer(root,salahInfo.salahTimesObj,[f,slideshow],changes,announcements,timeChanges,salahLabels,r)
+except:
+    t = Timer(root,salahInfo.salahTimesObj,[f,slideshow],changes,announcements,timeChanges,salahLabels,None)
 slideshow.redoTimes()
 root.config(bg=background)
 root.attributes('-fullscreen',True)
