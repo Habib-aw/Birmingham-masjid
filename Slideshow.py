@@ -68,16 +68,23 @@ class Slideshow:
             self.add(x)
     def next(self):
         if not self.timerOn:
-            self.count+=1
-            if self.count == self.ptr.prev.val.time:
-                self.ptr.prev.val.forgetP()
-                self.ptr.val.packSlide()
-                if self.ptr.val.announce:
-                    self.root.config(bg='red')
-                else:
-                    self.root.config(bg=background)
-                self.ptr= self.ptr.next
-            if self.count == self.max:
-                self.count = 0
+            if self.size > 1:
+                self.count+=1
+                if self.count == self.ptr.prev.val.time:
+                    self.ptr.prev.val.forgetP()
+                    self.ptr.val.packSlide()
+                    if self.ptr.val.announce:
+                        self.root.config(bg='red')
+                    else:
+                        self.root.config(bg=background)
+                    self.ptr= self.ptr.next
+                if self.count == self.max:
+                    self.count = 0
+            else:
+                try:
+                    self.head.val.packSlide()
+                    print("Packed")
+                except:
+                    pass
         else:
             self.ptr.prev.val.forgetP()
