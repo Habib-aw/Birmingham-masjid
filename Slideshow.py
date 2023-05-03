@@ -83,7 +83,6 @@ class Slideshow:
             else:
                 try:
                     self.head.val.packSlide()
-                    print("Packed")
                 except:
                     pass
         else:
