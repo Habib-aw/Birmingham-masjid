@@ -40,7 +40,11 @@ content="",
 frame=salahContinerframe,
 time=10
 )
-
+s2 = Slide(root,
+title="",
+content="\nPlease help support the Masjid by donating generously\n\nJazakallah Khair",
+contentFont=80,
+)
 hijri = Gregorian(int(datetime.now().year), datetime.now().month, datetime.now().day).to_hijri()
 
 if hijri.month_name() =="Ramadhan":
@@ -52,7 +56,7 @@ if isRamadan:
     r = Ramadan(slideshow,root)
 
 s1.packSlide()
-slideshow.addAll([s1])
+slideshow.addAll([s1,s2])
 try:
     slideshow.add(eidJamaahSlide)
 except:
