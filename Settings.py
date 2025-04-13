@@ -52,7 +52,7 @@ octoberLastSunday = last_day(datetime(datetime.now().year,11,1),'sunday')
 JummahTimes = "1:00"
 
 if datetime.now() >= marchLastSunday and datetime.now()<octoberLastSunday: # summer time jummah times go here
-    JummahTimes = "2:00"
+    JummahTimes = "1:30"
 
 jummahXpos=0.5
 jummahYpos=0.9+l
